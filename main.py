@@ -56,13 +56,14 @@ def main():
     else:
 
         frame_num = args.firstframe
-        filename = args.inputpath + args.nameformat + str(frame_num) + args.filetype
+        filename = path.join(args.inputpath, args.nameformat + f"{frame_num}.{args.filetype}")
 
         while path.exists(filename):
             frame = cv.imread(filename)
             print(process_frame(frame, args.resolution))
             cv.waitKey(50)
             frame_num += 1
+            filename = path.join(args.inputpath, args.nameformat + f"{frame_num}.{args.filetype}")
 
 
 # Print frame as ASCII characters in console
